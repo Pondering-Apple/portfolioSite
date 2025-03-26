@@ -7,8 +7,7 @@
 
 :root {
 	--background: #0d1117;
-	--background-gradient: #0d1117;
-	--card-background: #1d3447;
+	--card-background: #0d1117;
 	--border-color1: #c0c0c0;
 	--border-color2: #a8a9ad;
 	--border-color3: #afb1ae;
@@ -26,14 +25,22 @@
 
 a {
 	text-decoration: none;
-	color: rgba(255, 255, 255, 0.5);
+	color: rgba(255, 255, 255, 1);
 	cursor: none;
+	transition: all 0.5s;
 }
 
 a.link.active {
-	color: var(--primary); /* Highlight active link */
+	color: rgba(255, 255, 255, 1);
 	font-weight: bold;
-	font-size: 1.2rem;
+	font-size: 1rem;
+	transition: all 0.5s;
+	/* text-decoration: dashed underline; */
+}
+
+a:hover {
+	font-weight: bold;
+	font-size: 1.1rem;
 }
 
 body {
@@ -42,8 +49,9 @@ body {
 	background-image: radial-gradient(white 2%, transparent 2%);
 	background-size: 40px 40px;
 	overflow: hidden;
-	cursor: none;
+	/* cursor: none; */
 }
+
 #cursor {
 	position: fixed;
 	width: 15px;
@@ -64,14 +72,17 @@ body:hover #cursor {
 
 @keyframes cursorGlow {
 	0% {
-		filter: drop-shadow(0 0 5px white) drop-shadow(0 0 15px white)
-			drop-shadow(0 0 30px white) hue-rotate(0deg);
+		filter: drop-shadow(0 0 5px var(--border-color1))
+			drop-shadow(0 0 15px var(--border-color3))
+			drop-shadow(0 0 30px var(--border-color4)) hue-rotate(0deg);
 	}
 	100% {
-		filter: drop-shadow(0 0 5px white) drop-shadow(0 0 15px white)
-			drop-shadow(0 0 30px white) hue-rotate(360deg);
+		filter: drop-shadow(0 0 5px var(--border-color1))
+			drop-shadow(0 0 15px var(--border-color2))
+			drop-shadow(0 0 30px var(--border-color4)) hue-rotate(360deg);
 	}
 }
+
 #nav-trigger {
 	position: fixed;
 	top: 0;
@@ -88,11 +99,10 @@ body:hover #cursor {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	backdrop-filter: blur(2px);
+	backdrop-filter: blur(1px);
 	transition: all 0.5s ease, opacity 0.5s ease;
 	transform: translateX(-100%);
 	transform: translateX(0);
-	opacity: 0.5;
 }
 
 #nav-trigger:hover + #nav,
@@ -100,6 +110,8 @@ body:hover #cursor {
 	width: 15%;
 	opacity: 1;
 	z-index: 200;
+	background-color: #0d111710;
+	backdrop-filter: blur(2px);
 }
 
 #nav ul {
@@ -127,6 +139,11 @@ body:hover #cursor {
 #nav ul > li > a {
 	transition: all 0.5s;
 	text-align: left;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+#nav ul > li > a.active {
+	color: rgba(255, 255, 255, 1);
 }
 
 #nav > ul > li:hover a {
@@ -135,14 +152,8 @@ body:hover #cursor {
 	font-weight: 600;
 }
 
-main {
-	padding: 8% 20%;
-}
-
 .page {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	padding: 8% 20%;
 	height: 100vh;
 }
 
@@ -150,7 +161,7 @@ main {
 	margin: 0 auto;
 	padding: 1em 1.2em 1em 1.2em;
 	width: 170px;
-	background: var(--background-gradient);
+	background: var(--card-background);
 	text-align: center;
 	border-radius: 5px;
 	color: white;
@@ -202,7 +213,42 @@ main {
 		--angle: 360deg;
 	}
 }
+
+#page-1 {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 20px;
+}
+
 #about-me {
+	grid-column: 0/2;
+	grid-row: 0/1;
 	height: 300px;
 	width: 250px;
+}
+
+#social-media {
+	grid-column: 3/5;
+	/* grid-row: 0/1; */
+	height: fit-content;
+	width: 250px;
+}
+
+.social-link-container {
+	display: flex; /* Enable Flexbox */
+	align-items: center; /* Center content vertically */
+	justify-content: space-between; /* Push text to the left and SVG to the right */
+	text-align: left; /* Keep text aligned to the left */
+}
+
+.link-spacing {
+	margin-bottom: 7%;
+}
+
+.social-link-container > a {
+	display: flex; /* Ensure the link itself is a flex container */
+	align-items: center; /* Center the text and SVG vertically */
+	width: 100%; /* Ensure the link spans the full width of the container */
+	justify-content: space-between; /* Push text to the left and SVG to the right */
 }
