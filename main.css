@@ -53,6 +53,10 @@ body {
 	/* cursor: none; */
 }
 
+svg {
+	transition: all 0.5s;
+}
+
 #cursor {
 	position: fixed;
 	width: 15px;
@@ -288,6 +292,11 @@ body:hover #cursor {
 	align-items: center; /* Center content vertically */
 	justify-content: space-between; /* Push text to the left and SVG to the right */
 	text-align: left; /* Keep text aligned to the left */
+}
+
+.social-link-container:hover .icon {
+	fill: white;
+	transition: fill 0.3s ease;
 }
 
 .link-spacing {
